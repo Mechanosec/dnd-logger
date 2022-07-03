@@ -29,5 +29,7 @@ export default class ClassesRepository {
         englishName: `%${name}%`,
       })
       .getMany();
+
+      asd
   }
 }
