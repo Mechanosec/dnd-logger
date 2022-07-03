@@ -2,6 +2,9 @@ import { Expose } from 'class-transformer';
 
 export default class RaceDto {
   @Expose()
+  id: number;
+
+  @Expose()
   name: string;
 
   @Expose()
@@ -12,4 +15,7 @@ export default class RaceDto {
 
   @Expose()
   ability: string;
+
+  @Expose()
+  bookshort: string;
 }

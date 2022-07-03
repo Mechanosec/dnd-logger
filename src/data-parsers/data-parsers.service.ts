@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import axios, { AxiosResponse } from 'axios';
 import ClassDto from './dtos/class.dto';
 import { plainToClass } from 'class-transformer';
@@ -12,10 +12,11 @@ export class DataParsersService {
     classTransformer: { new (): T },
     response: AxiosResponse,
   ): T[] {
-    // const filterResponse = response.data.data.filter(
-    //   (classData) => classData.bookshort === 'PHB',
-    // );
-    return plainToClass<T, object[]>(classTransformer, response.data.data, {
+    const filterResponse = response.data.data.filter(
+      (classData: T) =>
+        classData.bookshort === 'PHB' || classData.bookshort === 'DMG',
+    );
+    return plainToClass<T, object[]>(classTransformer, filterResponse, {
       excludeExtraneousValues: true,
     });
   }
@@ -31,10 +32,9 @@ export class DataParsersService {
 
     try {
       const response = await axios.get(this.baseUrl + '/classes?' + params);
-
       return this.transformToClass(ClassDto, response);
     } catch (e) {
-      console.error(e);
+      throw new BadRequestException(e.message);
     }
   }
 
@@ -73,7 +73,7 @@ export class DataParsersService {
 
       return this.transformToClass(RaceDto, response);
     } catch (e) {
-      console.error(e);
+      throw new BadRequestException(e.message);
     }
   }
 }
