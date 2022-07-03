@@ -19,13 +19,13 @@ export default class ClassesRepository {
     return classEntity;
   }
 
-  async getByName(name: string): Promise<ClassesEntity[]> {
+  async getByName(name = ''): Promise<ClassesEntity[]> {
     return getRepository(ClassesEntity)
       .createQueryBuilder('c')
       .where('c.name LIKE :name', {
         name: `%${name}%`,
       })
-      .orWhere('r.english_name LIKE :englishName', {
+      .orWhere('c.english_name LIKE :englishName', {
         englishName: `%${name}%`,
       })
       .getMany();

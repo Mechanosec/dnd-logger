@@ -19,7 +19,7 @@ export default class RacesRepository {
     return raceEntity;
   }
 
-  async getByName(name: string): Promise<RacesEntity[]> {
+  async getByName(name = ''): Promise<RacesEntity[]> {
     return getRepository(RacesEntity)
       .createQueryBuilder('r')
       .where('r.name LIKE :name', {
