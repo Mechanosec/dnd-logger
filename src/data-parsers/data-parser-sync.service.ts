@@ -6,7 +6,6 @@ import RaceDto from './dtos/race.dto';
 import { validateSync } from '../tools/validator';
 import RaceEntity from '../races/races.entity';
 import ClassDto from './dtos/class.dto';
-import ClassesEntity from '../classes/classes.entity';
 import ClassCreateSchema from '../classes/schemas/class-create.schema';
 import RacesService from '../races/races.service';
 import ClassesService from '../classes/classes.service';

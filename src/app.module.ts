@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataParsersModule } from './data-parsers/data-parsers.module';
 import { RacesModule } from './races/races.module';
 import { ClassesModule } from './classes/classes.module';
+import { HeroesModule } from './heroes/heroes.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ClassesModule } from './classes/classes.module';
     TypeOrmModule.forRoot(),
     RacesModule,
     ClassesModule,
+    HeroesModule,
   ],
 })
 export class AppModule {}

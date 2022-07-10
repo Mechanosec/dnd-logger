@@ -1,7 +1,9 @@
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import ClassesRepository from './classes.repository';
 import ClassesGetSchema from './schemas/classes-get.schema';
 
+@ApiTags('classes')
 @Controller('classes')
 export class ClassesController {
   constructor(private classesRepository: ClassesRepository) {}
